@@ -40,3 +40,54 @@ distributions = ['normal', 'uniform', 'exponential']
 
 for dist in distributions:
     plot_bivariate_distribution(dist)
+
+
+
+##2nd uni and multi
+
+
+
+
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# Create a sample dataset for demonstration
+np.random.seed(42)
+data = pd.DataFrame({
+    'Feature1': np.random.normal(loc=0, scale=1, size=100),
+    'Feature2': np.random.normal(loc=5, scale=2, size=100),
+    'Feature3': np.random.normal(loc=3, scale=1, size=100),
+    'Category': np.random.choice(['A', 'B', 'C'], size=100)  # Categorical variable
+})
+
+# Univariate Distribution Analysis
+sns.set(style="whitegrid")
+
+# Plotting Univariate Distribution with different color palettes
+plt.figure(figsize=(12, 6))
+sns.histplot(data['Feature1'], kde=True, color="blue", bins=20, palette="coolwarm")
+plt.title('Univariate Distribution: Feature1')
+plt.show()
+
+# Univariate KDE plot with a different color palette
+plt.figure(figsize=(12, 6))
+sns.kdeplot(data['Feature2'], color="green", shade=True, palette="magma")
+plt.title('Univariate Distribution: Feature2')
+plt.show()
+
+# Multivariate Distribution Analysis (Pairplot with color by category)
+plt.figure(figsize=(12, 8))
+sns.pairplot(data, hue="Category", palette="Set2")
+plt.suptitle("Multivariate Distribution: Pairplot with Color Palettes", y=1.02)
+plt.show()
+
+# Scatter plot for Feature1 vs Feature2, color by Category
+plt.figure(figsize=(10, 6))
+sns.scatterplot(x='Feature1', y='Feature2', hue='Category', data=data, palette="viridis")
+plt.title('Scatterplot of Feature1 vs Feature2 (Color-coded by Category)')
+plt.show()
+
+
